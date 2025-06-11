@@ -97,7 +97,7 @@ if (!authState.user || !authState.user.userId) {
             <div
               className={styles.photos}
               style={{
-                backgroundImage: `url(${BASE_URL}/pexels-optical-chemist-340351297-15597164.jpg)`
+                backgroundImage: `url(${BASE_URL}/pexels-coppertist-wu-313365563-15863788.jpg)`
               }}
             >
               <div className={styles.profileImg}>
