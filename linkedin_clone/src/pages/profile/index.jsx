@@ -19,55 +19,51 @@ function ProfileView() {
   const [changingName, setChangingName] = useState('');
   const [changingEmail, setChangingEmail] = useState('');
   const [company, setCompany] = useState('');
-const [position, setPosition] = useState('');
-const [years, setYears] = useState('');
-const [showWorkForm, setShowWorkForm] = useState(false);
-const [school, setSchool] = useState('');
-const [degree, setDegree] = useState('');
-const [fieldOfStudy, setFieldOfStudy] = useState('');
-const [showSchoolForm, setShowSchoolForm] = useState(false);
-const [bioInput, setBioInput] = useState(authState.user.bio || "");
-const [showBioForm, setShowBioForm] = useState(false);
-const [commentValue, setcommentValue] = useState(" ");
+  const [position, setPosition] = useState('');
+  const [years, setYears] = useState('');
+  const [showWorkForm, setShowWorkForm] = useState(false);
+  const [school, setSchool] = useState('');
+  const [degree, setDegree] = useState('');
+  const [fieldOfStudy, setFieldOfStudy] = useState('');
+  const [showSchoolForm, setShowSchoolForm] = useState(false);
+  const [bioInput, setBioInput] = useState(""); // Initialize with an empty string
+  const [showBioForm, setShowBioForm] = useState(false);
+  const [commentValue, setcommentValue] = useState(" ");
 
-commentValue
+  const router = useRouter();
+  const username = typeof router.query.username === "string" ? router.query.username : "";
 
-const router = useRouter();
-const username = typeof router.query.username === "string" ? router.query.username : "";
-// Fetch user and posts only once
-useEffect(() => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    dispatch(getAboutUser({ token }));
-    dispatch(allPosts({ token }));
-    console.log(postState.posts)
-console.log("router.query.username:", router.query.username);
+  // Fetch user and posts only once
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(getAboutUser({ token }));
+      dispatch(allPosts({ token }));
+    }
+  }, [dispatch]);
 
-  }
-}, [dispatch]);
+  // Filter posts after posts and router are ready
+  useEffect(() => {
+    if (!router.isReady || !router.query.username) return;
 
-// Filter posts after posts and router are ready
-useEffect(() => {
-  if (!router.isReady || !router.query.username) return;
+    const username = router.query.username;
+    const posts = postState.posts || [];
 
-  const username = router.query.username;
-  const posts = postState.posts || [];
+    const filteredPosts = posts.filter(
+      (post) => post.userId?.username === username
+    );
+    setUserPost(filteredPosts);
+  }, [router.isReady, router.query.username, postState.posts]);
 
-  const filteredPosts = posts.filter(
-    (post) => post.userId?.username === username
-  );
-  setUserPost(filteredPosts);
-}, [router.isReady, router.query.username, postState.posts]);
-
-
+  // Set user profile and form fields once authState.user is available
   useEffect(() => {
     if (authState?.user && authState.user.userId) {
       setUserProfile(authState.user);
       setChangingName(authState.user.userId.name || '');
       setChangingEmail(authState.user.userId.email || '');
+      setBioInput(authState.user.bio || ''); // Set bioInput here
     }
   }, [authState.user]);
-
 
   const updateProfilePicture = async (file) => {
     const formData = new FormData();
@@ -84,14 +80,14 @@ useEffect(() => {
     }
   };
 
-  // ✅ Prevent render until data is ready
-if (!authState.user || !authState.user.userId) {
+  // Prevent render until data is ready
+  if (!authState.user || !authState.user.userId) {
     return <div>Loading...</div>;
   }
+
   return (
     <UserLayout>
       <DashboardLayout>
-        
         <div className={styles.container}>
           <div className={styles.upper}>
             <div
