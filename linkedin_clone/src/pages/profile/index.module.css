@@ -1,0 +1,438 @@
+.upper {
+  border-radius: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.photos {
+  background-size: cover;
+  background-position: center;
+  width: 95%;
+  height: 30vh;
+  border-radius: 2rem;
+  margin-left: 1.5rem;
+  position: relative; /* Needed for absolute children inside */
+}
+
+/* Container for profile image */
+.profileImg {
+  position: absolute;
+  bottom: -2.5rem; /* You can adjust this to move image up/down */
+  left: 3rem;      /* Adjust horizontally */
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* The profile image */
+.profilePic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: filter 0.3s ease;
+}
+
+/* The hover overlay */
+.editOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover states */
+.profileImg:hover .editOverlay {
+  opacity: 1;
+}
+
+.profileImg:hover .profilePic {
+  filter: brightness(80%);
+}
+
+.secondLevel{
+    display: flex;
+    padding-top: 5rem;
+    padding-left: 2rem;
+}
+.second_1{
+    
+    display: flex;
+    /* border-right: 2px gray; */
+}
+
+.third{
+    padding-top: 2rem;
+    padding-left: 2rem;
+}
+.connectBtn {
+     margin-top: 0.4rem;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #8197a2; /* LinkedIn blue */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 14px;
+}
+
+.connectBtn:hover {
+  background-color: #005f8d;
+  transform: scale(1.03);
+}
+
+.connectBtn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.btndownload{
+    cursor: pointer;
+}
+.firstHalf{
+    flex: .3
+ }
+.wildcard{
+   flex: .5;
+}
+
+.mmm{
+    flex: .2;
+}
+.worlDetails{
+    display: flex;
+}
+.work_first{
+  flex: 0.8;
+}
+.work_2nd{
+  flex: 0.2;
+}
+.schoolDetails{
+    display: flex;
+}
+.school_left{
+  flex: 0.8;
+}
+.school_right{
+  flex: 0.2;
+}
+.editForm {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  background-color: #f9f9f9;
+}
+
+.editForm input {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.editForm button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+
+
+.pContainer p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+.commentsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.inside {
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  width: 95%;
+  max-width: 600px;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  box-sizing: border-box;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.commentsList {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  scroll-behavior: smooth;
+  padding-right: 0.5rem;
+}
+
+.commentsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.commentsList::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 4px;
+}
+
+.mainCommentBox {
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s ease;
+}
+
+.mainCommentBox:hover {
+  background: #eef1f5;
+}
+
+.cmtBox {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.cmtprofile {
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.cmtprofile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  transition: transform 0.2s ease;
+}
+
+.cmtprofile img:hover {
+  transform: scale(1.05);
+}
+
+.content {
+  flex: 1;
+}
+
+.content h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.content h3 {
+  margin: 0.3rem 0 0;
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #555;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.cmtFooter {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.textArea {
+  width: 100%;
+  height: 80px;
+  resize: none;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.textArea:focus {
+  border-color: #007bff;
+}
+
+.submitBtn {
+  padding: 0.6rem 1.2rem;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: flex-end;
+  transition: background 0.3s ease;
+}
+
+.submitBtn:hover {
+  background: #0056b3;
+}
+
+@media (min-width: 600px) {
+  .cmtFooter {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .textArea {
+    flex: 1;
+    height: 60px;
+  }
+}
+.deleteCmtIcon{
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .postContainer {
+    padding: 1rem;
+  }
+
+  .pContainer {
+    padding: 1rem;
+  }
+
+  .postHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .postHeader img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 700px;
+  margin-left: 35px;
+  background-color: #f3f2ef;
+  border-radius: 8px;
+}
+
+.pContainer {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.postHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+}
+.postHeader > .imagee{
+  flex: 0.15;
+}
+.postHeader > .middle{
+  flex: 0.75;
+}
+.postHeader > .deleteIcon{
+  flex: 0.1;
+  margin-bottom: 2rem;
+   width: fit-content;
+  background-color: #e7dcd9;
+   
+}
+.deleteIcon:hover{
+  transform: translateY(-2px);
+   cursor: pointer;
+}
+
+.postHeader img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.postImg img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  max-height: 400px;
+}
+
+.postFooter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.pContainer p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}

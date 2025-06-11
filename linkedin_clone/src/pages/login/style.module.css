@@ -1,0 +1,94 @@
+.container{
+    display: flex;
+    justify-content: center;
+    background-color: snow;
+}
+.cardContainer{
+    height: 90vh;
+    width: 150vh;
+    display: flex;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 10px 10px 15px slategray;
+    overflow: hidden;
+
+}
+.cardContainer_left{
+    flex:0.6;
+    text-align: center;
+
+}
+.cardContainer_right{
+    flex:0.4;
+    text-align: center;
+    background-color: rgb(26, 125, 170) ;
+}
+.cardleft_heading{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.inputDiv{
+    padding-top: 50px;
+}
+.inputField {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.inputField:focus {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+}
+
+.inputField::placeholder {
+  color: #888;
+}
+.submit_button {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  margin-top: 16px;
+  background-color: rgb(26, 125, 170);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.submit_button_right{
+    width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  margin-top: 16px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.submit_button:hover {
+  background-color: #0059c1;
+  transform: translateY(-2px);
+}
+
+.submit_button:active {
+  transform: translateY(0);
+  background-color: #004799;
+}
+
+.submit_button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

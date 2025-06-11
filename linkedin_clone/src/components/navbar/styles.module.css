@@ -1,0 +1,19 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbarOptionCotainer{
+    display: flex;
+}
+
+.buttonNavbar{
+    width: fit-content;
+    cursor: pointer;
+     font-size: 1.3rem ;
+     transition: all 0.2s;
+     background-color: rgb(155, 83, 83);
+     border-radius: 10px;
+     color: white;
+     padding-inline: 1.2rem;
+  }

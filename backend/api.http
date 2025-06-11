@@ -1,0 +1,190 @@
+### Register User - POST request
+POST http://localhost:9080/register
+Content-Type: application/json
+
+{
+    "name": "rahul",
+    "email": "rahul@gmail.com",
+    "password": "123",
+    "username": "rahul1"
+}
+### Register User - POST request
+POST http://localhost:9080/register
+Content-Type: application/json
+
+{
+    "name": "sam",
+    "email": "sam@gmail.com",
+    "password": "123",
+    "username": "sam1"
+}
+
+
+### Login User - POST request
+POST  http://localhost:8011/login
+Content-Type: application/json
+
+{
+    "email": "rahul@gmail.com",
+    "password": "123"
+}
+### Login User - POST request
+POST http://localhost:9080/login
+Content-Type: application/json
+
+{
+   "email": "sam@gmail.com",
+    "password": "123"
+}
+
+### updateUserProfile - POST request
+POST http://localhost:9080/updateUserProfile
+Content-Type: application/json
+
+
+{
+  "token": "27e0d5f992f7312cd7d76b6d9910ab4633f9c9d51dc444826d0aec2539957be7",
+  "email": "ram3570@gmail.com",
+  "password": "123"
+}
+
+### get_user_and_profile - POST request  rahul
+GET  http://localhost:8011/get_user_and_profile
+Content-Type: application/json
+
+
+{
+  "token": "e64fa69668643a88528c79f8cd6304a572e53682c6abd1b98f8c012ccab30745"
+}
+
+
+### get_user_and_profile - POST request sam
+GET  http://localhost:90801180/get_user_and_profile
+Content-Type: application/json
+
+
+{
+  "token": "62dc835d0bb51d73bf8d4cdde57bc75ed05a6d2e1ca1ab2b6d53a1bc4334e217"
+}
+
+
+### update_Profile_Data- POST request
+POST http://localhost:9080/update_Profile_Data
+Content-Type: application/json
+
+
+{
+  "token": "27e0d5f992f7312cd7d76b6d9910ab4633f9c9d51dc444826d0aec2539957be7",
+  "bio": "This is my bio.",
+  "currentpost": "CTO",
+  "PastWork": [
+    { 
+      "company": "microsoft",
+      "position": "cto",
+      "years": "2+"
+    }
+  ],
+  "education": [
+    { 
+      "school": "xavier",
+      "degree": "B.tech",
+      "fieldOfStudy": "2022-2026"
+    }
+  ]
+}
+
+### update_Profile_Data- POST request
+POST http://localhost:8011/update_Profile_Data
+Content-Type: application/json
+
+
+{
+  "token": "4ecf684bb33b929a8e61af03f0534495fda36575581e633c857eccc685df8309",
+  "bio": " bio.",
+  "currentpost": "CTO",
+  "PastWork": [
+    { 
+      "company": "google",
+      "position": "cto",
+      "years": "2+"
+    }
+  ],
+  "education": [
+    { 
+      "school": "xavier",
+      "degree": "B.tech",
+      "fieldOfStudy": "2022-2026"
+    }
+  ]
+}
+
+### getAllUsers - POST request
+POST http://localhost:9080/user/getAllUsers
+Content-Type: application/json
+
+
+# ### 
+# POST http://localhost:9080/user/download_resume?id=6820724a2c9da8c826bd3a81
+# Content-Type: application/json
+
+# {
+#       "userId": "6820724a2c9da8c826bd3a81"
+# }
+
+
+### send_connection_request - POST request
+POST http://localhost:9080/user/send_connection_request
+Content-Type: application/json
+
+{
+  "token": "62dc835d0bb51d73bf8d4cdde57bc75ed05a6d2e1ca1ab2b6d53a1bc4334e217",
+  "connectionId" : "682234d0899e76d007cbb270"
+}
+
+### send_connection_request - POST request 37d653cd5da3cba0d6474cff15de768cc364a280b455713d2ac21774a0ab0126
+POST http://localhost:9080/user/getConnectionRequest
+Content-Type: application/json
+
+{
+  "token": "62dc835d0bb51d73bf8d4cdde57bc75ed05a6d2e1ca1ab2b6d53a1bc4334e217"
+}
+
+### send_connection_request - POST request 37d653cd5da3cba0d6474cff15de768cc364a280b455713d2ac21774a0ab0126
+POST http://localhost:9080/user/user_me_ConnectionreqUest
+Content-Type: application/json
+
+{
+  "token": "37d653cd5da3cba0d6474cff15de768cc364a280b455713d2ac21774a0ab0126"
+}
+
+### send_connection_request - POST request 37d653cd5da3cba0d6474cff15de768cc364a280b455713d2ac21774a0ab0126
+POST http://localhost:9080/user/accecptConnectionRequest
+Content-Type: application/json
+
+{
+  "token": "37d653cd5da3cba0d6474cff15de768cc364a280b455713d2ac21774a0ab0126",
+  "requestId" : "68223846ddecb5d7b364ad3b",
+  "actionType" : "accepted"
+}
+### send_connection_request - POST request
+GET  http://localhost:8011/getComments?post_id=68235feea52e18804224afc3
+Content-Type: application/json
+
+{
+  "token" :"3193116e702b850738424702872447fd53dd3029ab63cc192f38d11e019d9c64",
+  "post_id": "68235feea52e18804224afc3",
+  "comment" : "good pic"
+}
+
+### send_connection_request - POST request
+POST   http://localhost:8011/increament_likes
+Content-Type: application/json
+
+ {
+  "token": "b195b5e05b8e3757a486e23f5e0cc7e867f84acda2c71b8b1ad7a61e841697b8",
+   "post_id": "68235feea52e18804224afc3"
+}
+
+
+
+
