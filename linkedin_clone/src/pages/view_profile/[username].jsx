@@ -50,7 +50,7 @@ useEffect(() => {
           <div className={styles.upper} > 
             {/* style={{ backgroundColor: "rgb(222, 215, 215)" }} */}
             <div className={styles.photos}
-             style={{ backgroundImage: `url(${BASE_URL}/pexels-optical-chemist-340351297-15597164.jpg)` }}
+             style={{ backgroundImage: `url(${BASE_URL}/pexels-coppertist-wu-313365563-15863788.jpg)` }}
             >
               <div className={styles.profileImg}>
                 <img  width={200} src={`${BASE_URL}/${userProfile.userId.profilePicture}`} alt="" />
