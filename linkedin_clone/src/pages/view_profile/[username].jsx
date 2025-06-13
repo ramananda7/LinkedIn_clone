@@ -14,35 +14,44 @@ export default function ViewProfilePage({ userProfile }) {
   const dispatch = useDispatch();
   const authState = useSelector((state) =>state.auth);
   const postState = useSelector((state)=>state.posts) 
-  const [userPosts,setUserPost] = useState([]);
-  const [isCurrentInConnection , setIsCurrentInConnection] = useState(false);
-  const [isConnectionNull , setIsConnectionNull] = useState(false);
-  const getUserPost = async()=>{
-    dispatch(allPosts())
-    dispatch(getConnectionRequest({token : localStorage.getItem('token')}))
-  }
-  
-  useEffect(() => {
-   let post = postState.posts.filter((post)=>{return post.userId.username ===router.query.username})
-   setUserPost(post);
-  }, [postState.posts]);
- 
+const [userPosts, setUserPost] = useState([]);
+const [isCurrentInConnection, setIsCurrentInConnection] = useState(false);
+const [isConnectionNull, setIsConnectionNull] = useState(true);
+
+const getUserPost = async () => {
+  await dispatch(allPosts());
+  await dispatch(getConnectionRequest({ token: localStorage.getItem('token') }));
+};
+
 useEffect(() => {
-  if (Array.isArray(authState.connections) && authState.connections.some(user => user.connectionId?._id === userProfile.userId?._id)) {
-    setIsCurrentInConnection(true);
-    if ( authState.connections.find( user => user.connectionId?._id === userProfile.userId?._id  )?.status_accepted === true ) {
-      console.log("yes");
-      setIsConnectionNull(true);
+  getUserPost();
+}, []); // Run once on mount
+
+useEffect(() => {
+  const filteredPosts = postState.posts.filter(
+    (post) => post.userId?.username === router.query.username
+  );
+  setUserPost(filteredPosts);
+}, [postState.posts, router.query.username]);
+
+useEffect(() => {
+  if (
+    Array.isArray(authState.connections) &&
+    userProfile?.userId?._id
+  ) {
+    const foundConnection = authState.connections.find(
+      (user) => user.connectionId?._id === userProfile.userId._id
+    );
+
+    if (foundConnection) {
+      setIsCurrentInConnection(true);
+      setIsConnectionNull(!foundConnection.status_accepted);
+    } else {
+      setIsCurrentInConnection(false);
     }
   }
-}, [authState.connections, userProfile.userId?._id]);
+}, [authState.connections, userProfile?.userId?._id]);
 
-
-
-
-  useEffect(() => {
-       getUserPost();
-  }, []);
   return (
     <UserLayout>
       <DashboardLayout>
@@ -64,18 +73,29 @@ useEffect(() => {
               <h3>  {userProfile.userId.name}  @{userProfile.userId.username}</h3>
               <p></p>
               <div style={{display:"flex" ,gap : "1.2rem"}}>
-                 {
-                isCurrentInConnection ? 
-                <button  className={styles.connectBtn}>{isConnectionNull ? "Pending" :"connected"}</button>:
-                <button  className={styles.connectBtn} onClick={()=>{
-                  dispatch(sendConnectionRequest({
-                    token : localStorage.getItem('token') ,
-                    connectionId : userProfile.userId._id})
-                  )
-                  dispatch(getConnectionRequest({ token :  localStorage.getItem('token')}));
-                }}>Connect</button>
-                
-              }   
+                {
+  isCurrentInConnection ? (
+    <button className={styles.connectBtn}>
+      {isConnectionNull ? "Pending" : "Connected"}
+    </button>
+  ) : (
+    <button
+      className={styles.connectBtn}
+      onClick={() => {
+        dispatch(sendConnectionRequest({
+          token: localStorage.getItem('token'),
+          connectionId: userProfile?.userId?._id
+        }));
+        dispatch(getConnectionRequest({
+          token: localStorage.getItem('token')
+        }));
+      }}
+    >
+      Connect
+    </button>
+  )
+}
+  
               <div onClick={async()=>{
                 const response = await clientServer.get(`/user/download_resume?id=${userProfile.userId._id}`)
                 window.open(`${BASE_URL}/${response.data.message}`,"_blank")

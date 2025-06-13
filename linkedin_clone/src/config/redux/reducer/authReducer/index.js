@@ -12,7 +12,7 @@ const initialState = {
     message: "",
     profileFetched:false,
     connections:[],
-    connected:[],
+    connected:null,
     connectionRequest:[],
     all_users:[],
     all_profiles_fetched :false

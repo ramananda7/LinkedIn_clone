@@ -349,7 +349,7 @@ export const getConnected = async(req,res) =>{
         const user = await User.findOne({token});
         if(!user) return res.status(404).json({message:"user not found"});
 
-        const connections = await ConnectionRequest.find({ $or: [
+        const connections = await ConnectionRequest.findOne({ $or: [
         { userId: user._id },
         { connectionId: user._id }
         ],
