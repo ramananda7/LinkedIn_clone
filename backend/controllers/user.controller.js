@@ -238,25 +238,20 @@ export const getAllUserProfile = async (req,res)=>{
         return res.status(500).json({ message: error.message });
        }
    }
-export const downloadProfile = async (req, res) => {
-  try {
-    const user_id = req.query.id;
+export const downloadProfile = async (req,res)=>{
+      
+       try {
+          const user_id = req.query.id;
+          const user_Profile = await Profile.findOne({userId : user_id}).populate('userId' ,'name email username profilePicture' );
 
-    const user_Profile = await Profile.findOne({ userId: user_id })
-      .populate("userId", "name email username profilePicture");
+          const a= await convertUserDataToPDF(user_Profile);
+          return res.json({ message: a });
 
-    if (!user_Profile) {
-      return res.status(404).json({ message: "User profile not found" });
-    }
+       } catch (error) {
+                return res.status(500).json({ message: error.message });
 
-    const pdfFilename = await convertUserDataToPDF(user_Profile);
-
-    return res.status(200).json({ message: pdfFilename });
-  } catch (error) {
-    console.error("PDF generation error:", error);
-    return res.status(500).json({ message: error.message });
-  }
-};
+       }
+   }
 
    export const sendConnectionRequest = async (req,res)=>{
        const {token , connectionId} = req.query;
@@ -349,7 +344,7 @@ export const getConnected = async(req,res) =>{
         const user = await User.findOne({token});
         if(!user) return res.status(404).json({message:"user not found"});
 
-        const connections = await ConnectionRequest.findOne({ $or: [
+        const connections = await ConnectionRequest.find({ $or: [
         { userId: user._id },
         { connectionId: user._id }
         ],
